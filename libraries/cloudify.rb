@@ -51,7 +51,7 @@ module Cloudify
         end
     end
 
-    def cloudify_attribute(scope, attribute)
+    def cloudify_get_attribute(scope, attribute)
         cloudify_rest(:get, scope, attribute)
     end
   end
