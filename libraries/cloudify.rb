@@ -23,7 +23,7 @@ module Cloudify
 
         request.content_type = 'application/json'     
 
-        result = Net::HTTP.start(cloudify_url.host, cloudify_url.port) do |http|
+        result = Net::HTTP.start(cloudify_uri.host, cloudify_uri.port) do |http|
             http.request(request)
         end
 
