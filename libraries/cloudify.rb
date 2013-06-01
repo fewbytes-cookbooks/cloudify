@@ -11,7 +11,7 @@ module Cloudify
         request = case method
         when :post
             r = ::Net::HTTP::Post.new(cloudify_resource_uri(scope))
-            r.body = JsonCompat.to_json({new_resource.name => new_resource.value}) if value
+            r.body = ::Chef::JSONCompat.to_json({new_resource.name => new_resource.value}) if value
             r
         when :delete
             ::Net::HTTP::Delete.new(cloudify_resource_uri(scope) + "/" + key)
