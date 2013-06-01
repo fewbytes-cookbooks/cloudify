@@ -22,9 +22,10 @@ The cookbook contains `cloudify_attribute` LWRP which can be used to set/unset a
 
 You can read attributes using the `cloudify_get_attribute` function which is available in recipes:
 
-    # cloudify_get_attribute(scope, attribute)
+    # cloudify_get_attribute(scope, attribute, opts={})
     cloudify_get_attribute(:application, "mysql_address")
 
+The `cloudify_get_attribute` function accepts keyword arguments `:application`, `:service` and `:instance`. Use them if you need to get attributes from different contexts.
 
 License and Authors
 -------------------
