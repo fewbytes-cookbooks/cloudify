@@ -8,7 +8,7 @@ module Cloudify
     #a wrapper for et::HTTP.start that yields a connection to REST interface
     def cloudify_rest(method, scope, application, service, instance, key, value=nil)
         cloudify_uri = URI.parse(node['cloudify']['management_rest_url'])
-        cloudify_rest_uri = cloudify_resource_uri(scope, application, service, instance_id)
+        cloudify_rest_uri = cloudify_resource_uri(scope, application, service, instance)
         request = case method
         when :post
             r = ::Net::HTTP::Post.new(cloudify_rest_uri)
