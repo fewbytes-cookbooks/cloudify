@@ -29,6 +29,8 @@ module Cloudify
         end
 
         case result
+        when Net::HTTPResponse
+          result
         when Net::HTTPSuccess, Net::HTTPRedirection
           # OK
         else
@@ -50,10 +52,10 @@ module Cloudify
     end
 
     def cloudify_get_attribute(scope, attribute, opts={})
-        application = opts.fetch("application" || node['cloudify']['application_name'])
-        service = opts.fetch("service" || node['cloudify']['service_name'])
-        instance = opts.fetch("instance" || node['cloudify']['instance_id'])
-        cloudify_rest(:get, scope, application, service, instance, attribute)
+        application = opts.fetch("application", node['cloudify']['application_name'])
+        service = opts.fetch("service", node['cloudify']['service_name'])
+        instance = opts.fetch("instance", node['cloudify']['instance_id'])
+        ::Chef::JSONCompat.from_json(cloudify_rest(:get, scope, application, service, instance, attribute).body)[attribute]
     end
   end
 end
