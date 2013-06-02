@@ -24,17 +24,12 @@ module Cloudify
 
         request.content_type = 'application/json'     
 
-        result = Net::HTTP.start(cloudify_uri.host, cloudify_uri.port) do |http|
+        response = Net::HTTP.start(cloudify_uri.host, cloudify_uri.port) do |http|
             http.request(request)
         end
-
-        case result
-        when Net::HTTPResponse
-          result
-        when Net::HTTPSuccess, Net::HTTPRedirection
-          # OK
-        else
-          raise RuntimeError.new "The REST request failed with code #{result.value}"
+        
+        unless response.code == '200'
+          raise RuntimeError.new "The REST request failed with code #{response.code}"
         end
     end
 
