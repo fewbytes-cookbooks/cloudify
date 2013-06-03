@@ -27,6 +27,9 @@ You can read attributes using the `cloudify_get_attribute` function which is ava
 
 The `cloudify_get_attribute` function accepts keyword arguments `:application`, `:service` and `:instance`. Use them if you need to get attributes from different contexts.
 
+The cookbook contains a chef report/exception handler which write the result of the chef run (status, updated resources, node attributes) to Cloudify's instance attribute store.
+To activate the handler, include the `cloudify::default` recipe handler in your `run_list`.
+
 License and Authors
 -------------------
 Authors: Avishai Ish-Shalom <avishai@fewbytes.com>
