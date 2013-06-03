@@ -1,6 +1,6 @@
 module Cloudify
   module ChefHandlers
-    class AttributesDumpHandler << ::Chef::Handler
+    class AttributesDumpHandler < ::Chef::Handler
       include ::Cloudify::REST
 
       def report
