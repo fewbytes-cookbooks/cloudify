@@ -11,6 +11,22 @@ module Cloudify
                       "chef_node_attributes",
                       node.to_json
                      )
+
+        cloudify_rest(:instance,
+                      node["cloudify"]["application_name"],
+                      node["cloudify"]["service_name"],
+                      node["cloudify"]["instance_id"],
+                      "chef_run_status",
+                      success? ? 'ok' : 'failed'
+                     )
+
+        cloudify_rest(:instance,
+                      node["cloudify"]["application_name"],
+                      node["cloudify"]["service_name"],
+                      node["cloudify"]["instance_id"],
+                      "chef_updated_resources",
+                      ::Chef::JSONCompat.to_json(updated_resources)
+                     )
       end
     end
   end

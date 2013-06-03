@@ -41,7 +41,7 @@ module Cloudify
             when :application then "/attributes/applications/#{application}"
             when :service     then "/attributes/services/#{application}/#{service}"
             when :instance    then "/attributes/instances/#{application}/#{service}/#{instance_id}"
-            else raise ArgumentError.new """Invalid attribute type '#{resource[:type]}'.
+            else raise ArgumentError.new """Invalid attribute type '#{scope}'.
                                             Use one of: global/application/service/instance"""
         end
     end
