@@ -4,7 +4,8 @@ module Cloudify
       include ::Cloudify::REST
 
       def report
-        cloudify_rest(:instance,
+        cloudify_rest(:post,
+                      :instance,
                       node["cloudify"]["application_name"],
                       node["cloudify"]["service_name"],
                       node["cloudify"]["instance_id"],
@@ -12,7 +13,8 @@ module Cloudify
                       node.to_json
                      )
 
-        cloudify_rest(:instance,
+        cloudify_rest(:post,
+                      :instance,
                       node["cloudify"]["application_name"],
                       node["cloudify"]["service_name"],
                       node["cloudify"]["instance_id"],
@@ -20,7 +22,8 @@ module Cloudify
                       success? ? 'ok' : 'failed'
                      )
 
-        cloudify_rest(:instance,
+        cloudify_rest(:post, 
+                      :instance,
                       node["cloudify"]["application_name"],
                       node["cloudify"]["service_name"],
                       node["cloudify"]["instance_id"],
